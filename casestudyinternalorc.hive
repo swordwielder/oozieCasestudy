@@ -1,10 +1,7 @@
 use cdw_sapp;
 SET hive.exec.dynamic.partition = true;
 SET hive.exec.dynamic.partition.mode = nonstrict;
-Drop table if exists BRANCH_PARTITION;
-Drop table if exists CREDIT_PARTITION;
-Drop table if exists CUSTOMER_PARTITION;
-Drop table if exists TIME_PARTITION;
+
 
 Create Table IF NOT EXISTS BRANCH_PARTITION(branch_code int, branch_name String,
 									branch_street String, branch_city String,
@@ -14,7 +11,7 @@ PARTITIONED BY (branch_state String)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' ESCAPED BY '"' LINES TERMINATED BY '\n'
 STORED AS ORC;
 
-CREATE TABLE IF NOT EXISTS CREDIT_PARTITION(transaction_Id int, timeid int, 
+CREATE TABLE IF NOT EXISTS CREDIT_PARTITION(transaction_Id int, timeid int,
 													credit String, ssn String,
 											branch_code int, transaction_value double,
 													last_updated String)

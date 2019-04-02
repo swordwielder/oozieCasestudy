@@ -7,7 +7,7 @@
       <name-node>${nameNode}</name-node>
       <!--name node variable -->
       <prepare>
-        <delete path="$(namenode)/user/maria_dev/cdw_sapp_branch"/></prepare>
+        <delete path="${nameNode}/user/maria_dev/cdw_sapp_branch"/></prepare>
       <!--Data node variable -->
       <configuration>
         <property>
@@ -37,7 +37,7 @@
       <job-tracker>${jobTracker}</job-tracker>
       <name-node>${nameNode}</name-node>
       <prepare>
-        <delete path="$(namenode)/user/maria_dev/cdw_sapp_customer"/></prepare>
+        <delete path="${nameNode}/user/maria_dev/cdw_sapp_customer"/></prepare>
       <configuration>
         <property>
           <name>mapred.job.queue.name</name>
@@ -65,7 +65,7 @@
       <job-tracker>${jobTracker}</job-tracker>
       <name-node>${nameNode}</name-node>
       <prepare>
-        <delete path="$(namenode)/user/maria_dev/cdw_sapp_credit"/></prepare>
+        <delete path="${nameNode}/user/maria_dev/cdw_sapp_credit"/></prepare>
       <configuration>
         <property>
           <name>mapred.job.queue.name</name>
@@ -93,7 +93,7 @@
       <job-tracker>${jobTracker}</job-tracker>
       <name-node>${nameNode}</name-node>
       <prepare>
-        <delete path="$(namenode)/user/maria_dev/cdw_sapp_time"/></prepare>
+        <delete path="${nameNode}/user/maria_dev/cdw_sapp_time"/></prepare>
       <configuration>
         <property>
           <name>mapred.job.queue.name</name>
