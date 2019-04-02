@@ -1,0 +1,13 @@
+<coordinator-app xmlns="uri:oozie:coordinator:0.2" name=" copydata_from_external_orc" frequency="15" start="2018-04-16T01:00Z" end="2018-04-17T00:45Z" timezone="America/New_York">
+  <controls>
+    <timeout>1</timeout>
+    <concurrency>1</concurrency>
+    <execution>FIFO</execution>
+    <throttle>1</throttle>
+  </controls>
+  <action>
+    <workflow>
+      <app-path>${nameNode}/user/maria_dev/casestudyoozie/workflow.xml</app-path>
+    </workflow>
+  </action>
+</coordinator-app>

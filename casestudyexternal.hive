@@ -1,0 +1,35 @@
+use cdw_sapp;
+
+Drop Table IF EXISTS CDW_Sapp_Branch;
+Drop table IF EXISTS CDW_Sapp_Customer;
+Drop table IF EXISTS CDW_Sapp_Credit;
+Drop table if exists CDW_Sapp_Time;
+
+
+Create External Table IF NOT EXISTS CDW_Sapp_Branch(branch_code int, branch_name String,
+									branch_street String, branch_city String,
+									branch_state String, branch_zip String, branch_phone String,
+									last_updated String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n'
+location '/user/maria_dev/cdw_sapp_branch';
+
+Create External Table IF NOT EXISTS CDW_Sapp_Credit(transaction_Id int, timeid int, 
+													credit String, ssn String, branch_code int,
+									transaction_type String, transaction_value double,
+													last_updated String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n'
+location '/user/maria_dev/cdw_sapp_credit';
+
+Create External Table IF NOT EXISTS CDW_Sapp_Customer(fname string, mname String, lname String,
+									ssn int, credit String, address String,
+									cu_city String, cu_state String, cu_country String,
+									cu_zip String, cust_phone String, cust_email String,
+												last_updated String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n'
+location '/user/maria_dev/cdw_sapp_customer';
+
+CREATE EXTERNAL TABLE IF NOT EXISTS CDW_Sapp_Time(timeid int, day int, month int, quarter
+												  varchar(8), year int, transactionid int,
+												  Last_Updated String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n'
+location '/user/maria_dev/cdw_sapp_time';
