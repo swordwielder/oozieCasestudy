@@ -1,0 +1,40 @@
+use cdw_sapp;
+SET hive.exec.dynamic.partition = true;
+SET hive.exec.dynamic.partition.mode = nonstrict;
+Drop table if exists BRANCH_PARTITION;
+Drop table if exists CREDIT_PARTITION;
+Drop table if exists CUSTOMER_PARTITION;
+Drop table if exists TIME_PARTITION;
+
+Create Table IF NOT EXISTS BRANCH_PARTITION(branch_code int, branch_name String,
+									branch_street String, branch_city String,
+									branch_zip String, branch_phone String,
+									last_updated timestamp)
+PARTITIONED BY (branch_state String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' ESCAPED BY '"' LINES TERMINATED BY '\n'
+STORED AS ORC;
+
+CREATE TABLE IF NOT EXISTS CREDIT_PARTITION(transaction_Id int, timeid int, 
+													credit String, ssn String,
+											branch_code int, transaction_value double,
+													last_updated String)
+PARTITIONED BY (transaction_type String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' ESCAPED BY '"' LINES TERMINATED BY '\n'
+STORED AS ORC;
+
+CREATE TABLE IF NOT EXISTS CUSTOMER_PARTITION(fname string, mname String, lname String,
+									ssn int, credit String, address String,
+									cu_city String,  cu_country String,
+									cu_zip String, cust_phone String, cust_email String,
+												last_updated String)
+PARTITIONED BY (cu_state String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' ESCAPED BY '"' LINES TERMINATED BY '\n'
+STORED AS ORC;
+
+
+CREATE TABLE IF NOT EXISTS TIME_PARTITION(timeid int, day int, month int,
+										  year int, transactionid int,
+										  last_updated String)
+PARTITIONED BY (quarter String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' ESCAPED BY '"' LINES TERMINATED BY '\n'
+STORED AS ORC;
