@@ -1,6 +1,6 @@
 #!/bin/bash
 oozie jobs -oozie http://localhost:11000/oozie -kill -filter user=root -jobtype bundle & oozie jobs -oozie http://localhost:11000/oozie -kill -filter user=root
--jobtype coordinator & oozie jobs -oozie http://localhost:11000/oozie -kill -filter user=root
+ -jobtype coordinator & oozie jobs -oozie http://localhost:11000/oozie -kill -filter user=root
 
 sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop --delete cdw_branch_import
 sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop --delete cdw_credit_import
@@ -59,3 +59,6 @@ sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop --create cdw_t
  "Third" WHEN month BETWEEN 10 AND 12 THEN "Fourth" END, YEAR, Transaction_ID , LAST_UPDATED FROM CDW_SAPP_CREDITCARD WHERE $CONDITIONS'
  --append --incremental lastmodified --check-column LAST_UPDATED --last-value '0'
  --target-dir /user/maria_dev/cdw_sapp_time --outdir java_files --fields-terminated-by '\t'
+
+
+oozie job -oozie http://localhost:11000/oozie -config ./Documents/casestudy/job.properties -run
