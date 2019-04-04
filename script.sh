@@ -46,8 +46,12 @@ sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop --create cdw_c
 
 
 sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop --create cdw_time_import -- import -m1 --connect jdbc:mysql://localhost/CDW_SAPP --driver com.mysql.jdbc.Driver --query 'SELECT
- REPLACE(STR_TO_DATE(CONCAT(YEAR, "/", MONTH, "/", DAY), "%Y/%m/%d"),"-",""), DAY, MONTH, CASE WHEN month BETWEEN 1 AND 3 THEN "First" WHEN month BETWEEN 4 AND 6 THEN "Second" WHEN month BETWEEN 7 AND 9 THEN
- "Third" WHEN month BETWEEN 10 AND 12 THEN "Fourth" END, YEAR, Transaction_ID , LAST_UPDATED FROM CDW_SAPP_CREDITCARD WHERE $CONDITIONS' --append --incremental lastmodified --check-column LAST_UPDATED --last-value '0' --target-dir /user/maria_dev/cdw_sapp_time --outdir java_files --fields-terminated-by '\t'
+ REPLACE(STR_TO_DATE(CONCAT(YEAR, "/", MONTH, "/", DAY), "%Y/%m/%d"),"-",""),
+ DAY,
+ MONTH, CASE WHEN month BETWEEN 1 AND 3 THEN "First" WHEN month BETWEEN 4 AND 6 THEN "Second" WHEN month BETWEEN 7 AND 9 THEN "Third"  WHEN month BETWEEN 10 AND 12 THEN "Fourth" END, YEAR,
+ Transaction_ID,
+ LAST_UPDATED
+ FROM CDW_SAPP_CREDITCARD WHERE $CONDITIONS' --append --incremental lastmodified --check-column LAST_UPDATED --last-value '0' --target-dir /user/maria_dev/cdw_sapp_time --outdir java_files --fields-terminated-by '\t'
 
 
 oozie job -oozie http://localhost:11000/oozie -config ~/Documents/casestudy/job.properties -run
