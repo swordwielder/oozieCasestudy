@@ -1,3 +1,8 @@
+sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop  --delete cdw_branch_import
+sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop  --delete cdw_customer_import
+sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop  --delete cdw_credit_import
+sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop  --delete cdw_time_import
+
 sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop  --create cdw_branch_import -- import -m1 --connect jdbc:mysql://localhost/CDW_SAPP
 --driver com.mysql.jdbc.Driver --query 'SELECT
 BRANCH_CODE, BRANCH_NAME, BRANCH_STREET,
@@ -18,13 +23,12 @@ LCASE(MID(LAST_NAME, 2))) AS LAST_NAME,
  SSN,
  CREDIT_CARD_NO,
  CONCAT(STREET_NAME, ", ", APT_NO) AS RESIDENCE,
-CUST_CITY,
+ CUST_CITY,
  CUST_STATE,
  CUST_COUNTRY,
  CUST_ZIP,
  CONCAT("",SUBSTR(CUST_PHONE, 1, 3),"-",SUBSTR(CUST_PHONE, 4)) AS CUST_PHONE,
-
-CUST_EMAIL,
+ CUST_EMAIL,
  LAST_UPDATED
  FROM
  CDW_SAPP_CUSTOMER WHERE $CONDITIONS' --incremental lastmodified  --check-column LAST_UPDATED --last-value '0'
