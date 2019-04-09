@@ -1,0 +1,15 @@
+<coordinator-app xmlns="uri:oozie:coordinator:0.2" name="Oozie workflow job"
+  frequency="0/20 8-18 * * 2-6" start="2019-04-05T18:00Z"
+  end="2025-03-29T18:00Z" timezone="America/New_York">
+  <controls>
+    <timeout>1</timeout>
+    <concurrency>1</concurrency>
+    <execution>FIFO</execution>
+    <throttle>1</throttle>
+  </controls>
+  <action>
+    <workflow>
+      <app-path>${nameNode}/user/maria_dev/nonoptimcasestudy/workflow.xml</app-path>
+    </workflow>
+  </action>
+</coordinator-app>
