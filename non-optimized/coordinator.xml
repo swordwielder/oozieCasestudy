@@ -4,7 +4,7 @@
   <controls>
     <timeout>1</timeout>
     <concurrency>1</concurrency>
-    <execution>FIFO</execution>
+    <execution>LAST_ONLY</execution>
     <throttle>1</throttle>
   </controls>
   <action>
