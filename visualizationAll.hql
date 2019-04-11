@@ -6,7 +6,6 @@ group by b.branch_zip
 order by val desc
 limit 20;
 
-select sum(TRANSACTION_VALUE) AS VALUE, transaction_type from CREDIT_PARTITION
-join TIME_PARTITION on CREDIT_PARTITION.branchcode = TIME_PARTITION.branchcode
+select sum(TRANSACTION_VALUE) AS VALUE, transaction_type, quarter from CREDIT_PARTITION
+join TIME_PARTITION on CREDIT_PARTITION.transaction_id = TIME_PARTITION.transactionid
 group by quarter, transaction_type;
-
