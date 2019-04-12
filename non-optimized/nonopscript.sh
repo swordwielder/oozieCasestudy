@@ -5,9 +5,7 @@ sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop --delete nonop
 sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop --delete nonoptim_customer_import
 sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop --delete nonoptim_time_import
 
-if [ ! -d  /user/maria_dev/nonoptim ]; then
-  mkdir /user/maria_dev/nonoptim
-fi
+
 hive -e "Create DATABASE IF NOT EXISTS cdw_sapp;"
 hive -e "Drop Table IF EXISTS cdw_sapp.CDW_Sapp_Branch;"
 hive -e "Drop Table IF EXISTS cdw_sapp.CDW_Sapp_Customer;"
