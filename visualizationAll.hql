@@ -1,4 +1,4 @@
-USE CDW_SAPP;
+USE cdw_sapp;
 
 select sum(c.transaction_value) as val, b.branch_zip from CREDIT_PARTITION c
 join BRANCH_PARTITION b on (c.branch_code = b.branch_code)
