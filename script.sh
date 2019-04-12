@@ -1,5 +1,5 @@
 oozie jobs -oozie http://localhost:11000/oozie -kill -filter user=root -jobtype bundle & oozie jobs -oozie http://localhost:11000/oozie -kill -filter user=root -jobtype coordinator & oozie jobs -oozie http://localhost:11000/oozie -kill -filter user=root
-
+hive -e "Create DATABASE IF NOT EXISTS cdw_sapp;"
 hive -e "Drop Table IF EXISTS cdw_sapp.CDW_Sapp_Branch;"
 hive -e "Drop Table IF EXISTS cdw_sapp.CDW_Sapp_Customer;"
 hive -e "Drop Table IF EXISTS cdw_sapp.CDW_Sapp_Credit;"

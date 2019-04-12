@@ -1,3 +1,4 @@
+Create DATABASE IF NOT EXISTS cdw_sapp;
 use cdw_sapp;
 
 Create External Table IF NOT EXISTS CDW_Sapp_Branch(branch_code int, branch_name String,

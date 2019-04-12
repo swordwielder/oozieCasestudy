@@ -8,7 +8,7 @@ sqoop job --meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop --delete nonop
 if [ ! -d  /user/maria_dev/nonoptim ]; then
   mkdir /user/maria_dev/nonoptim
 fi
-
+hive -e "Create DATABASE IF NOT EXISTS cdw_sapp;"
 hive -e "Drop Table IF EXISTS cdw_sapp.CDW_Sapp_Branch;"
 hive -e "Drop Table IF EXISTS cdw_sapp.CDW_Sapp_Customer;"
 hive -e "Drop Table IF EXISTS cdw_sapp.CDW_Sapp_Credit;"
